@@ -463,7 +463,7 @@ function TourDetailModal({ tour, onClose, onPlanTrek }) {
             <span className="tmodal-eyebrow">{tour.country}</span>
             <h2 className="tmodal-title">{tour.title}</h2>
           </div>
-          <button className="cal-close" onClick={onClose}>Close ×</button>
+          <button className="tmodal-close" onClick={onClose} aria-label="Close">×</button>
         </div>
 
         {/* Hero */}
@@ -664,6 +664,13 @@ function SafetyQuality() {
 }
 
 function PlanningContact() {
+  const [sent, setSent] = useState(false);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setSent(true);
+  }
+
   return (
     <>
       <section className="screen planning-screen" aria-labelledby="planning-title" id="contact">
@@ -675,13 +682,22 @@ function PlanningContact() {
           <img src={photos.lakeTraveler} alt="A traveler sitting beside a mountain lake" />
           <p>Share your dates and we will prepare a route through mountains, canyons and Silk Road places</p>
         </div>
-        <form className="planning-form">
-          <label><span>Hello, my name is</span><input name="name" type="text" aria-label="Your name" /></label>
-          <label><span>My travel dates are</span><input name="date" type="text" aria-label="Approximate date" /></label>
-          <label><span>My email address is</span><input name="email" type="email" aria-label="Email address" /></label>
-          <label><span>My contact number is</span><input name="phone" type="tel" aria-label="Contact number" /></label>
-          <button className="text-link" type="submit">Send route request <span aria-hidden="true">-&gt;</span></button>
-        </form>
+
+        {sent ? (
+          <div className="planning-success">
+            <p className="planning-success-tag">Sent</p>
+            <h3>Request received</h3>
+            <p>We'll reach out within 24 hours with a route proposal tailored to your dates.</p>
+          </div>
+        ) : (
+          <form className="planning-form" onSubmit={handleSubmit}>
+            <label><span>Hello, my name is</span><input name="name" type="text" aria-label="Your name" /></label>
+            <label><span>My travel dates are</span><input name="date" type="text" aria-label="Approximate date" /></label>
+            <label><span>My email address is</span><input name="email" type="email" aria-label="Email address" /></label>
+            <label><span>My contact number is</span><input name="phone" type="tel" aria-label="Contact number" /></label>
+            <button className="text-link" type="submit">Send route request <span aria-hidden="true">-&gt;</span></button>
+          </form>
+        )}
       </section>
 
       <footer className="site-footer" aria-label="Footer">
@@ -718,8 +734,9 @@ export default function App() {
   const [calTour,    setCalTour]    = useState(null);
   const [detailTour, setDetailTour] = useState(null);
 
-  function openCal(tourTitle = null) {
-    setCalTour(tourTitle || null);
+  function openCal(tourTitle) {
+    // guard: onClick passes a MouseEvent — treat anything non-string as "all tours"
+    setCalTour(typeof tourTitle === 'string' ? tourTitle : null);
     setCalOpen(true);
   }
   function closeCal()          { setCalOpen(false); setCalTour(null); }

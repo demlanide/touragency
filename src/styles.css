@@ -329,14 +329,21 @@ img {
   min-height: clamp(500px, 54vh, 610px);
 }
 
-/* clickable photo wrapper */
+/* clickable photo wrapper — must match .tour-main-photo sizing */
 .tour-photo-btn {
   position: relative;
   display: block;
+  width: 100%;
+  height: clamp(500px, 54vh, 610px);
   border: none;
   padding: 0;
   background: none;
   cursor: pointer;
+}
+
+.tour-photo-btn .tour-main-photo {
+  width: 100%;
+  height: 100%;
 }
 
 .tour-photo-hover {
@@ -821,6 +828,41 @@ img {
   cursor: pointer;
 }
 
+.planning-success {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 112px;
+  max-width: 520px;
+}
+
+.planning-success-tag {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.planning-success h3 {
+  margin: 0;
+  font-size: clamp(52px, 6vw, 80px);
+  font-weight: 400;
+  letter-spacing: -5px;
+  line-height: 0.82;
+  text-transform: uppercase;
+}
+
+.planning-success p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: #555;
+  letter-spacing: -0.5px;
+  line-height: 1.3;
+  max-width: 380px;
+}
+
 .site-footer {
   display: grid;
   grid-template-columns: minmax(240px, 0.9fr) minmax(360px, 1.1fr);
@@ -1126,6 +1168,18 @@ img {
     margin-top: 12px;
   }
 
+  .tour-photo-btn {
+    height: auto;
+    min-height: 330px;
+    aspect-ratio: 0.55;
+  }
+
+  .tour-photo-btn .tour-main-photo {
+    height: 100%;
+    min-height: 0;
+    aspect-ratio: unset;
+  }
+
   .tour-main-photo {
     height: auto;
     min-height: 330px;
@@ -1134,7 +1188,13 @@ img {
 
   .tour-copy {
     min-height: 0;
-    gap: 16px;
+    gap: 14px;
+  }
+
+  .tour-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   .tour-copy h3 {
@@ -1235,7 +1295,12 @@ img {
     padding: 64px 20px;
   }
 
+  .trip-styles-screen {
+    min-height: auto;
+  }
+
   .trip-styles-heading {
+    position: static;          /* was absolute on desktop */
     grid-template-columns: 1fr auto;
     margin: 0;
   }
@@ -1254,6 +1319,7 @@ img {
   }
 
   .trip-style-cards {
+    position: static;          /* was absolute on desktop */
     display: grid;
     grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 22px 12px;
@@ -1467,6 +1533,10 @@ img {
 
   .tour-showcase {
     gap: 12px;
+  }
+
+  .tour-photo-btn {
+    min-height: 318px;
   }
 
   .tour-main-photo {
@@ -1894,6 +1964,22 @@ button.reserve-link {
   gap: 5px;
 }
 
+.tmodal-close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  color: #777;
+  padding: 0 2px;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.tmodal-close:hover {
+  color: #111;
+}
+
 .tmodal-eyebrow {
   font-size: 9px;
   font-weight: 800;
@@ -2069,39 +2155,67 @@ button.reserve-link {
   margin-top: 8px;
 }
 
-/* ── Tour detail mobile ──────────────────────────────────────── */
+/* ── Tour detail mobile — full screen, single scroll ─────────── */
 
 @media (max-width: 720px) {
   .tmodal-overlay {
     padding: 0;
-    align-items: flex-end;
+    align-items: stretch;
   }
 
   .tmodal {
-    max-height: 95vh;
+    height: 100dvh;
+    max-height: 100dvh;
+    max-width: 100%;
+    border-radius: 0;
+  }
+
+  .tmodal-bar {
+    padding: 14px 18px 12px;
+  }
+
+  /* hero hidden — stats + body fill the full screen instead */
+  .tmodal-hero {
+    display: none;
   }
 
   .tmodal-stats {
     grid-template-columns: repeat(2, 1fr);
+    flex-shrink: 0;
+  }
+
+  .tmodal-stat {
+    padding: 10px 16px;
   }
 
   .tmodal-stat:nth-child(2) {
     border-right: none;
   }
 
+  /* two-pane: left fixed, right scrolls */
   .tmodal-body {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
   }
 
   .tmodal-left {
+    overflow: visible;
     border-right: none;
     border-bottom: 1px solid rgba(8, 8, 8, 0.10);
-    padding: 18px 18px 20px;
+    padding: 16px 18px 18px;
+    gap: 12px;
+  }
+
+  .tmodal-side-img {
+    display: none;
+  }
+
+  .tmodal-plan-btn {
+    margin-top: 4px;
   }
 
   .tmodal-right {
-    padding: 18px 18px 24px;
+    padding: 16px 18px 32px;
   }
 }
 
