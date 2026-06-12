@@ -1,6 +1,6 @@
-# Central Asia Trekking
+# Global Nomad — Central Asia Tours
 
-Starter npm project for the Central Asia trekking website.
+Website for Global Nomad's private guided tours across Central Asia (Kazakhstan, Kyrgyzstan and Uzbekistan).
 
 ## Scripts
 

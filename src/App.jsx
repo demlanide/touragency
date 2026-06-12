@@ -1,44 +1,43 @@
 import { useState } from 'react';
 
 const photos = {
-  hikers:      "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=700&q=82",
-  trail:       "https://images.unsplash.com/photo-1522163182402-834f871fd851?auto=format&fit=crop&w=900&q=82",
-  tent:        "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=500&q=82",
-  gear:        "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=760&q=82",
+  // ── Real Central Asia photos (Wikimedia Commons) ──────────────
+  zenkov:   "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Zenkov_Cathedral%2C_Almaty.jpg/960px-Zenkov_Cathedral%2C_Almaty.jpg",
+  koktobe:  "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Sunset_over_the_Almaty_seen_from_Kok_Tobe_mountain%2C_pic_2.jpg/960px-Sunset_over_the_Almaty_seen_from_Kok_Tobe_mountain%2C_pic_2.jpg",
+  charyn:   "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Charyn_Canyon%2C_Kazakhstan_01.jpg/960px-Charyn_Canyon%2C_Kazakhstan_01.jpg",
+  kolsai:   "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Kolsai_lake.jpg/960px-Kolsai_lake.jpg",
+  dune:     "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/210723_Altyn_Emel_Singing_Dune_valley.jpg/960px-210723_Altyn_Emel_Singing_Dune_valley.jpg",
+  astana:   "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Astana-2021-10_-_12.jpg/960px-Astana-2021-10_-_12.jpg",
+  registan: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/RegistanSquare_Samarkand.jpg/960px-RegistanSquare_Samarkand.jpg",
+  bukhara:  "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Po-i-Kalyan_in_Bukhara.jpg/960px-Po-i-Kalyan_in_Bukhara.jpg",
+  songkul:  "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Hills_around_Song_K%C3%B6l_lake%2C_Kyrgyzstan%3B_Thomas_Depenbusch%3B_June_2012.jpg/960px-Hills_around_Song_K%C3%B6l_lake%2C_Kyrgyzstan%3B_Thomas_Depenbusch%3B_June_2012.jpg",
+  issyk:    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Issyk_kul_Lake_1.jpg/960px-Issyk_kul_Lake_1.jpg",
+  // ── Supporting landscape photos (Unsplash) ────────────────────
   valley:      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=82",
-  forest:      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=760&q=82",
   lake:        "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=760&q=82",
   desert:      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=760&q=82",
+  forest:      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=760&q=82",
   ridge:       "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=760&q=82",
-  campLake:    "https://images.unsplash.com/photo-1478827536114-da961b7f86d2?auto=format&fit=crop&w=760&q=82",
-  backpacker:  "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=760&q=82",
   group:       "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1100&q=82",
-  lakeTraveler:"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=520&q=82",
-  // Itinerary photos
-  summit:      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=760&q=82",
-  jailoo:      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=760&q=82",
-  dunes:       "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=760&q=82",
-  gorge:       "https://images.unsplash.com/photo-1469521669194-babb45599def?auto=format&fit=crop&w=760&q=82",
-  glacierLake: "https://images.unsplash.com/photo-1476231682828-37e571bc172f?auto=format&fit=crop&w=760&q=82",
-  glacier:     "https://images.unsplash.com/photo-1472791108553-c9405341e398?auto=format&fit=crop&w=760&q=82",
+  gear:        "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=760&q=82",
 };
 
 // ── Per-tour colors ────────────────────────────────────────────
 
 const TOUR_COLORS = {
-  "Tien Shan high pass trek":    { bg: "#b4ccb8", text: "#1a3d25" },
-  "Altyn-Emel desert trek":      { bg: "#dfc898", text: "#503c10" },
-  "Song-Kul alpine lake route":  { bg: "#a8c4d8", text: "#0c3454" },
-  "Charyn canyon walking tour":  { bg: "#e8bf9c", text: "#5c3418" },
-  "Fann mountains glacier trek": { bg: "#c4b4d4", text: "#381848" },
+  "Almaty highlights":                        { bg: "#a8c4d8", text: "#0c3454" },
+  "Almaty & Altyn-Emel desert":               { bg: "#dfc898", text: "#503c10" },
+  "Almaty & Astana grand tour":               { bg: "#b4ccb8", text: "#1a3d25" },
+  "Kazakhstan in depth":                      { bg: "#e8bf9c", text: "#5c3418" },
+  "Kazakhstan, Kyrgyzstan & Uzbekistan":      { bg: "#c4b4d4", text: "#381848" },
 };
 
 const TOUR_SHORT = {
-  "Tien Shan high pass trek":    "Tien Shan",
-  "Altyn-Emel desert trek":      "Altyn-Emel",
-  "Song-Kul alpine lake route":  "Song-Kul",
-  "Charyn canyon walking tour":  "Charyn",
-  "Fann mountains glacier trek": "Fann Mtns",
+  "Almaty highlights":                        "Almaty",
+  "Almaty & Altyn-Emel desert":               "Altyn-Emel",
+  "Almaty & Astana grand tour":               "Astana",
+  "Kazakhstan in depth":                      "Kazakhstan",
+  "Kazakhstan, Kyrgyzstan & Uzbekistan":      "3 Countries",
 };
 
 const TOUR_TITLES = Object.keys(TOUR_COLORS);
@@ -46,84 +45,79 @@ const TOUR_TITLES = Object.keys(TOUR_COLORS);
 // ── Day-by-day itineraries ─────────────────────────────────────
 
 const TOUR_ITINERARIES = {
-  "Tien Shan high pass trek": {
-    difficulty: "Challenging",
-    groupSize: "4–10",
+  "Almaty highlights": {
+    style: "City & nature",
+    groupSize: "6–8",
     days: [
-      { day: 1,  title: "Bishkek arrival",          text: "Transfer from Manas airport to guesthouse. Evening route briefing and gear check with your guide." },
-      { day: 2,  title: "Drive to Kochkor",          text: "Three-hour drive through the Boom Gorge to Kochkor, 2,200m. Short afternoon acclimatisation walk.", photo: photos.valley },
-      { day: 3,  title: "First trail day",           text: "Climb to Kalmak-Ashu jailoo plateau. Open ridge walking at 3,000–3,200m with views across the Terskei range.", photo: photos.jailoo },
-      { day: 4,  title: "High jailoo crossing",      text: "Full day traverse across the plateau at 3,200–3,400m. Camp below the first snowline." },
-      { day: 5,  title: "Approach to first pass",    text: "Morning scramble to the pass crest (3,780m). Descent through moraine to glacier-view camp." },
-      { day: 6,  title: "High camp (3,900m)",        text: "The route's highest overnight. Short ridge walk for panoramic views into three mountain valleys.", photo: photos.summit },
-      { day: 7,  title: "Rest and acclimatisation",  text: "Optional glacier walk. Afternoon rest at camp, weather window check for the next section." },
-      { day: 8,  title: "Descent to Song-Kul",       text: "Full descent to the high lake Song-Kul (3,016m). Arrive at the north shore by afternoon.", photo: photos.lake },
-      { day: 9,  title: "Lake circuit, north shore", text: "Walking the lakeshore with nomad families. Yurt camp overnight. Horses graze on the plain around you." },
-      { day: 10, title: "Western shore crossing",    text: "Long open walk along the western edge. Wide steppe, silence, wild horses in the distance." },
-      { day: 11, title: "Moldo-Ashuu traverse",      text: "Climb to the second major pass (3,780m) and long descent through rolling jailoo into the valley." },
-      { day: 12, title: "Naryn valley",              text: "Forest trail and natural warm springs. Last long walking day before the road.", photo: photos.forest },
-      { day: 13, title: "Final ridge camp",          text: "Short ridge walk with views back to the range. Camp near the trail end." },
-      { day: 14, title: "Return to Bishkek",         text: "Morning transfer via the Boom Gorge. Arrive Bishkek by midday." },
+      { day: 1, title: "Almaty city tour",        text: "Transfer from the airport to your central hotel. City sightseeing including Zenkov Cathedral, the Medeu skating rink and Shymbulak resort, finishing with sunset at Kok-Tobe (weather permitting).", photo: photos.zenkov },
+      { day: 2, title: "Kolsai, Black & Charyn",   text: "Full day to the national parks of the Almaty region (around 300 km one way): Kolsai lake, the Black canyon and Charyn canyon — the famous Valley of Castles.", photo: photos.charyn },
+      { day: 3, title: "Issyk, Turgen & Golden Man", text: "Trip to Issyk town and the Turgen gorge in the Ile-Alatau national park. Issyk museum and the Golden Man history, a trout-farm lunch (optional) and Issyk lake.", photo: photos.kolsai },
+      { day: 4, title: "Almarasan & departure",    text: "Almarasan gorge and the Ayusai visitor centre with a light hike to the Ayusai waterfall. Back to the city for Art Almaty and shopping at the Green Bazaar, then airport transfer.", photo: photos.valley },
     ],
   },
 
-  "Altyn-Emel desert trek": {
-    difficulty: "Moderate",
-    groupSize: "4–12",
+  "Almaty & Altyn-Emel desert": {
+    style: "Nature & desert",
+    groupSize: "6–8",
     days: [
-      { day: 1, title: "Almaty arrival",        text: "Transfer to guesthouse in the city. Evening briefing with equipment check." },
-      { day: 2, title: "Drive to Altyn-Emel",   text: "Four-hour drive east from Almaty to the national park. First desert camp near the Singing Dune.", photo: photos.desert },
-      { day: 3, title: "Singing Dune",          text: "150m ascent up the active sand dune. Wind resonance audible at the crest. Sunset over the open steppe.", photo: photos.dunes },
-      { day: 4, title: "Aktau chalk mountains", text: "Walking through eroded coloured mineral formations — white, red and yellow layers exposed by centuries of wind." },
-      { day: 5, title: "Steppe traverse",       text: "Open walking across the desert plain. Wide silence and long views. Camp beside a dry riverbed." },
-      { day: 6, title: "Valley rest day",       text: "Light walk and birdwatching in the lower valley. Afternoon rest, camp meal under a clear sky.", photo: photos.gear },
-      { day: 7, title: "Eastern canyon section",text: "Red-rock gorges and narrow sandstone passages. The most dramatic terrain on the route.", photo: photos.gorge },
-      { day: 8, title: "Return traverse",       text: "Cross the steppe back to the park boundary. Long afternoon light, final desert camp." },
-      { day: 9, title: "Almaty departure",      text: "Morning drive back to the city. Airport transfer for afternoon and evening flights." },
+      { day: 1, title: "Almaty city tour",        text: "Transfer from the airport to your central hotel. City sightseeing including Zenkov Cathedral, Medeu and Shymbulak, with sunset at Kok-Tobe (weather permitting).", photo: photos.zenkov },
+      { day: 2, title: "Kolsai, Black & Charyn",   text: "Full day to the national parks of the Almaty region (around 350 km one way): Kolsai lake, the Black canyon and the Charyn Valley of Castles.", photo: photos.charyn },
+      { day: 3, title: "Issyk, Turgen & Golden Man", text: "Issyk town and the Turgen gorge in the Ile-Alatau national park: Issyk museum and the Golden Man, an optional trout-farm lunch and Issyk lake.", photo: photos.kolsai },
+      { day: 4, title: "Altyn-Emel Singing Dune",  text: "Drive to the Altyn-Emel national park (around 400 km one way). Visit of the famous Singing Dune and an overnight stay in Basshy village.", photo: photos.dune },
+      { day: 5, title: "Aktau & Katytau mountains", text: "Trip to the coloured chalk mountains of Aktau and Katytau (another 200 km one way from Basshy), then the drive back towards the city.", photo: photos.desert },
+      { day: 6, title: "Almarasan & departure",    text: "Almarasan gorge and the Ayusai centre with a light hike to the waterfall. Art Almaty and Green Bazaar shopping, then airport transfer.", photo: photos.valley },
     ],
   },
 
-  "Song-Kul alpine lake route": {
-    difficulty: "Moderate",
-    groupSize: "4–12",
+  "Almaty & Astana grand tour": {
+    style: "City & culture",
+    groupSize: "6–8",
     days: [
-      { day: 1, title: "Bishkek and drive",     text: "Three-hour drive through the Chu valley to Kochkor. Overnight at a guesthouse, evening briefing." },
-      { day: 2, title: "Ascent to Song-Kul",    text: "4WD to the trailhead at 2,600m. Three-hour walk up to the lake at 3,016m.", photo: photos.lake },
-      { day: 3, title: "North shore, yurt stay",text: "Walking the north shore with nomad families. Traditional yurt overnight. Horse riding available.", photo: photos.tent },
-      { day: 4, title: "Western shore",         text: "Long open walk along the western edge of the lake. Wide steppe, the Terskei range behind you." },
-      { day: 5, title: "South ridge viewpoint", text: "Short climb to the best panorama point above the lake. Sunset light across the plateau.", photo: photos.jailoo },
-      { day: 6, title: "Moldo-Ashuu descent",   text: "Cross the pass at 3,346m and descend to the valley floor camp by evening." },
-      { day: 7, title: "Return to Bishkek",     text: "Three-hour drive through the Chu valley. Arrival in Bishkek by midday." },
+      { day: 1, title: "Almaty city tour",        text: "Transfer from the airport to your hotel in Almaty. City sightseeing including Zenkov Cathedral, Medeu and Shymbulak, with sunset at Kok-Tobe (weather permitting).", photo: photos.zenkov },
+      { day: 2, title: "Kolsai, Black & Charyn",   text: "Full day to the national parks of the Almaty region (around 350 km one way): Kolsai lake, the Black canyon and the Charyn Valley of Castles.", photo: photos.charyn },
+      { day: 3, title: "Issyk, Turgen & Golden Man", text: "Issyk town and the Turgen gorge: Issyk museum and the Golden Man history, an optional trout-farm lunch and Issyk lake.", photo: photos.kolsai },
+      { day: 4, title: "Fly to Astana",            text: "Morning flight from Almaty to the capital Astana (around 2 hours), accompanied by a Global Nomad team member. Lunch, afternoon Astana sightseeing and dinner before the hotel.", photo: photos.astana },
+      { day: 5, title: "Burabay resort",           text: "Transfer from Astana to the magnificent Burabay resort (257 km, about 3 hours), with its lakes and rock formations including Borovoe lake. Lunch and dinner at local cafés.", photo: photos.lake },
+      { day: 6, title: "Burabay & flight back",    text: "Morning sightseeing and local museums at Burabay, then back through Shuchinsk to Astana airport for the evening flight to Almaty.", photo: photos.forest },
+      { day: 7, title: "Almarasan & departure",    text: "Almarasan gorge and the Ayusai centre with a light hike to the waterfall. Art Almaty and Green Bazaar shopping, then airport transfer.", photo: photos.valley },
     ],
   },
 
-  "Charyn canyon walking tour": {
-    difficulty: "Easy",
-    groupSize: "4–14",
+  "Kazakhstan in depth": {
+    style: "Grand tour",
+    groupSize: "6–8",
     days: [
-      { day: 1, title: "Almaty arrival",      text: "Transfer to the canyon area (3h drive east). First camp on the steppe rim at sunset.", photo: photos.desert },
-      { day: 2, title: "Valley of Castles",   text: "The main canyon section: 2km walk through sculpted red columns up to 30m high.", photo: photos.gorge },
-      { day: 3, title: "Canyon of Witches",   text: "Narrow gully section through ash-grey formations carved by the Charyn River over thousands of years." },
-      { day: 4, title: "Steppe rim trail",    text: "Walking the canyon edge with wide views into the gorge. Long afternoon light, final canyon camp.", photo: photos.ridge },
-      { day: 5, title: "Return to Almaty",    text: "Morning walk on the lower trail, then transfer back to Almaty for afternoon departures." },
+      { day: 1,  title: "Almaty arrival",          text: "Transfer to your central hotel and an introduction to Almaty: Zenkov Cathedral, Panfilov Park and the Green Bazaar.", photo: photos.zenkov },
+      { day: 2,  title: "Kok-Tobe & the resorts",  text: "Cable cars and mountain resorts above the city — Medeu, Shymbulak and the panorama from Kok-Tobe.", photo: photos.koktobe },
+      { day: 3,  title: "Big Almaty Lake",         text: "A day in the Ile-Alatau national park around the turquoise Big Almaty Lake beneath the peaks.", photo: photos.valley },
+      { day: 4,  title: "Charyn canyon",           text: "The Valley of Castles and the Charyn river gorge — the most dramatic landscape near Almaty.", photo: photos.charyn },
+      { day: 5,  title: "Kolsai & Kaindy lakes",   text: "The mountain lakes near the Kyrgyz border, including the sunken forest of Lake Kaindy.", photo: photos.kolsai },
+      { day: 6,  title: "Issyk & Turgen",          text: "The Golden Man museum, the Turgen waterfalls and Issyk lake in the Ile-Alatau foothills.", photo: photos.lake },
+      { day: 7,  title: "Altyn-Emel Singing Dune", text: "Drive into the Altyn-Emel national park; the Singing Dune and an overnight in Basshy village.", photo: photos.dune },
+      { day: 8,  title: "Aktau & Katytau",         text: "The coloured chalk mountains of Aktau and Katytau, then back across the steppe.", photo: photos.desert },
+      { day: 9,  title: "Tamgaly petroglyphs",     text: "Ancient rock carvings on the open steppe — a UNESCO site of Bronze-Age art.", photo: photos.ridge },
+      { day: 10, title: "Turkestan",               text: "Travel to Turkestan and the mausoleum of Khoja Ahmed Yasawi, one of Central Asia's great Silk Road monuments." },
+      { day: 11, title: "Fly to Astana",           text: "Flight to the capital and an afternoon of Astana sightseeing along the Esil river.", photo: photos.astana },
+      { day: 12, title: "Burabay resort",          text: "Transfer to Burabay (Borovoe) for its lakes, pine forests and rock formations.", photo: photos.lake },
+      { day: 13, title: "Burabay & back to Astana", text: "Local museums and Borovoe lake, then back through Shuchinsk towards Astana." , photo: photos.forest },
+      { day: 14, title: "Departure",               text: "Morning transfer to the airport for your onward flight, or a connection back to Almaty." },
     ],
   },
 
-  "Fann mountains glacier trek": {
-    difficulty: "Challenging",
-    groupSize: "4–10",
+  "Kazakhstan, Kyrgyzstan & Uzbekistan": {
+    style: "Silk Road",
+    groupSize: "6–8",
     days: [
-      { day: 1,  title: "Dushanbe arrival",       text: "Transfer to guesthouse. Evening briefing with your guide, gear and permit check." },
-      { day: 2,  title: "Drive to Artuch",         text: "Four-hour drive into the Fann mountains to base camp at 2,160m. Afternoon rest, camp setup." },
-      { day: 3,  title: "Alaudin Lakes",           text: "Approach hike to the turquoise Alaudin lake at 2,753m. First glacier views from the far shore.", photo: photos.glacierLake },
-      { day: 4,  title: "Mutnye Lakes circuit",    text: "Twin high-altitude lakes on a rocky plateau. Rock camping, clear cold nights above the treeline.", photo: photos.lake },
-      { day: 5,  title: "Kulikalon basin",         text: "Entry into the glacier cirque basin. Moraine walking with views up to the Chimtarga massif.", photo: photos.glacier },
-      { day: 6,  title: "High camp (3,800m)",      text: "Rest day before the pass. Acclimatisation walk above camp. Weather assessment for tomorrow." },
-      { day: 7,  title: "Chimtarga Pass (4,743m)", text: "The highest point of the route. Wide panorama into three separate mountain systems.", photo: photos.summit },
-      { day: 8,  title: "Dukdon descent",          text: "Steep scree and snowfield descent to a green meadow camp. Long but satisfying day." },
-      { day: 9,  title: "Marguzor Lakes",          text: "The seven-lake chain — each a different colour from mineral sediment. The most photographed section.", photo: photos.glacierLake },
-      { day: 10, title: "Padrud valley",           text: "Final walking day through stone villages and walnut orchards. Traditional lunch with a local family." },
-      { day: 11, title: "Dushanbe departure",      text: "Morning transfer to Dushanbe airport for afternoon and evening international flights." },
+      { day: 1,  title: "Almaty arrival & city",   text: "Transfer to your hotel and a city tour: Zenkov Cathedral, Medeu, Shymbulak and sunset at Kok-Tobe.", photo: photos.zenkov },
+      { day: 2,  title: "Charyn & Kolsai",         text: "The Charyn Valley of Castles and the forested mountain lake of Kolsai near the Kyrgyz border.", photo: photos.charyn },
+      { day: 3,  title: "Into Kyrgyzstan",         text: "Cross the border to Lake Issyk-Kul and the lakeside town of Karakol beneath the Tian Shan.", photo: photos.issyk },
+      { day: 4,  title: "Song-Kol lake",           text: "Drive up to the high alpine lake of Song-Kol and an overnight yurt stay with herder families.", photo: photos.songkul },
+      { day: 5,  title: "Bishkek",                 text: "The Ala-Archa gorge and the parks and bazaars of Bishkek, the Kyrgyz capital." },
+      { day: 6,  title: "Fly to Uzbekistan",       text: "Flight to Tashkent — the old town, the Khast-Imam complex and the Chorsu bazaar." },
+      { day: 7,  title: "Samarkand",               text: "Travel to Samarkand for the Registan square and the Gur-Emir mausoleum of Tamerlane.", photo: photos.registan },
+      { day: 8,  title: "Samarkand to Bukhara",    text: "Shah-i-Zinda and Bibi-Khanym, then transfer across the steppe to ancient Bukhara." },
+      { day: 9,  title: "Bukhara old town",        text: "The Po-i-Kalyan complex, the Lyabi-Hauz and the trading domes of the old city.", photo: photos.bukhara },
+      { day: 10, title: "Departure",               text: "Free morning in Bukhara, then transfer to the airport for your onward flight." },
     ],
   },
 };
@@ -132,83 +126,76 @@ const TOUR_ITINERARIES = {
 
 const popularTours = [
   {
-    country: "Central Asia", title: "Tien Shan high pass trek",
-    days: 14, price: 1890,
-    lead: "Cross alpine passes, jailoo valleys, glacier viewpoints and nomad camps.",
-    description: "Kyrgyzstan is made for active travelers who want open mountains, clean air and a route that moves from high lakes to quiet shepherd trails.",
-    image: photos.valley,  imageAlt: "High mountain valley with a river and distant glaciers",
-    sideImage: photos.tent, sideImageAlt: "Travelers resting inside a trekking tent",
+    country: "Kazakhstan", title: "Almaty highlights",
+    days: 4, price: 2400,
+    lead: "Almaty, the mountain resorts, Charyn canyon and the Golden Man over four easy days.",
+    description: "A relaxed first taste of Kazakhstan: the city of Almaty, the Medeu and Shymbulak resorts, Charyn canyon and the lakes — with a comfortable central hotel and breakfast included.",
+    image: photos.zenkov,  imageAlt: "The colourful domes of Zenkov Cathedral in Almaty",
+    sideImage: photos.koktobe, sideImageAlt: "View over Almaty at sunset from Kok-Tobe",
   },
   {
-    country: "Kazakhstan", title: "Altyn-Emel desert trek",
-    days: 9, price: 1240,
-    lead: "Walk through singing dunes, chalk ridges, wide steppe light and silent canyons.",
-    description: "This route connects Kazakhstan's open desert landscapes with easy walking days, dramatic geology and nights under a clear steppe sky.",
-    image: photos.forest, imageAlt: "Open steppe road beneath a dramatic sky",
-    sideImage: photos.tent, sideImageAlt: "Travelers sitting inside a tent",
+    country: "Kazakhstan", title: "Almaty & Altyn-Emel desert",
+    days: 6, price: 3000,
+    lead: "Add the Singing Dune and the coloured Aktau mountains to the Almaty highlights.",
+    description: "Six days that pair the city and canyons of the Almaty region with the desert of the Altyn-Emel national park — the Singing Dune, the chalk mountains and a night in Basshy village.",
+    image: photos.dune, imageAlt: "The Singing Dune in the Altyn-Emel national park",
+    sideImage: photos.charyn, sideImageAlt: "Red rock formations of Charyn canyon",
   },
   {
-    country: "Kyrgyzstan", title: "Song-Kul alpine lake route",
-    days: 7, price: 990,
-    lead: "Cross open jailoo pastures, blue lakes and sharp snow peaks over seven days.",
-    description: "A balanced route for travelers who want altitude, yurt stays and wide mountain views without rushing the pace.",
-    image: photos.lake, imageAlt: "Mountain valley with a lake and peaks",
-    sideImage: photos.gear, sideImageAlt: "Hiking gear resting on rocks near a stream",
+    country: "Kazakhstan", title: "Almaty & Astana grand tour",
+    days: 7, price: 4000,
+    lead: "Almaty, the canyons, then a flight to the capital Astana and the Burabay resort.",
+    description: "The full Kazakhstan introduction: the Almaty region and its parks, then a flight north to modern Astana and the lakes and rocks of the Burabay resort, with flights and hotels arranged.",
+    image: photos.astana, imageAlt: "The modern skyline of Astana, the capital of Kazakhstan",
+    sideImage: photos.lake, sideImageAlt: "A clear mountain lake in the morning light",
   },
   {
-    country: "Kazakhstan", title: "Charyn canyon walking tour",
-    days: 5, price: 740,
-    lead: "Move from red canyon walls to steppe horizons and quiet desert camps.",
-    description: "This compact route connects dramatic rock corridors, warm evening light and easy walking days for a lighter Central Asia adventure.",
-    image: photos.desert, imageAlt: "Wide desert landscape with hills",
-    sideImage: photos.group, sideImageAlt: "Hikers walking through a mountain pass",
+    country: "Kazakhstan", title: "Kazakhstan in depth",
+    days: 14, price: null,
+    lead: "Two weeks across Kazakhstan — Almaty, the lakes, the desert, Turkestan and Astana.",
+    description: "Our most complete Kazakhstan journey: the mountains and lakes around Almaty, Charyn canyon, the Altyn-Emel desert, the Silk Road city of Turkestan and the capital Astana with the Burabay resort.",
+    image: photos.kolsai, imageAlt: "Kolsai mountain lake surrounded by forested slopes",
+    sideImage: photos.dune, sideImageAlt: "Sand dunes in the Altyn-Emel desert",
   },
   {
-    country: "Tajikistan", title: "Fann mountains glacier trek",
-    days: 11, price: 1590,
-    lead: "Follow high passes, turquoise lakes and remote villages in the Pamirs.",
-    description: "A more demanding mountain route for strong walkers who want crisp air, long climbs and quiet nights above the valley.",
-    image: photos.ridge, imageAlt: "Snowy mountain ridge above a valley",
-    sideImage: photos.trail, sideImageAlt: "A winding mountain trail through dry grass",
+    country: "Central Asia", title: "Kazakhstan, Kyrgyzstan & Uzbekistan",
+    days: 10, price: null,
+    lead: "Three countries in ten days — Almaty, Song-Kol, Samarkand and Bukhara.",
+    description: "A Silk Road loop that links the canyons of Kazakhstan, the alpine lakes and yurts of Kyrgyzstan and the tiled cities of Uzbekistan — Samarkand and Bukhara — in a single comfortable trip.",
+    image: photos.registan, imageAlt: "The Registan square in Samarkand, Uzbekistan",
+    sideImage: photos.bukhara, sideImageAlt: "The Po-i-Kalyan complex in Bukhara",
   },
 ];
 
 const keyFactors = [
-  { title: "Route logistics handled", text: "We coordinate permits, local transport, trail meals, camps and mountain support so travelers can focus on the route." },
-  { title: "Silk Road landscapes",    text: "Our routes move from Silk Road cities to alpine lakes, desert canyons, glacier valleys and wide steppe horizons." },
-  { title: "Small trail groups",      text: "Trips stay intentionally small, usually 4-12 travelers, so the route keeps its rhythm and the trail never feels crowded." },
-  { title: "Local mountain guides",   text: "Our guides know the passes, weather, villages and quiet detours that turn a good route into a memorable journey." },
+  { title: "Everything handled",     text: "We arrange central hotels, a comfortable car with a driver, guides, park fees and museum and cable-car tickets — you simply travel." },
+  { title: "Silk Road & wild nature", text: "Our routes move from Almaty and the Silk Road cities to Charyn canyon, mountain lakes, singing dunes and modern Astana." },
+  { title: "Small private groups",   text: "Tours run as private trips for small groups of 6–8 travellers, so the pace stays comfortable and the days feel personal." },
+  { title: "Local guides & comfort", text: "English-speaking local guides, 3-star central hotels, water and snacks in the car, and breakfast included every day." },
 ];
 
 const tripStyles = [
-  { title: "High pass trekking",   image: photos.backpacker, imageAlt: "A backpacker standing on a high mountain trail" },
-  { title: "Yurt and camp routes", image: photos.campLake,   imageAlt: "A glowing tent beside an alpine lake at dusk" },
-  { title: "Comfort lodge hikes",  image: photos.trail,      imageAlt: "A hiker walking along a ridge trail" },
-];
-
-const experienceStats = [
-  { value: "200+",     label: "Trail days" },
-  { value: "350+",     label: "Guided hikers" },
-  { value: "17 years", label: "In the mountains" },
+  { title: "City & culture tours", image: photos.zenkov,   imageAlt: "Zenkov Cathedral in Almaty" },
+  { title: "Nature & national parks", image: photos.charyn, imageAlt: "Charyn canyon in Kazakhstan" },
+  { title: "Silk Road journeys",   image: photos.registan, imageAlt: "Registan square in Samarkand" },
 ];
 
 // ── Tour schedule (April – September 2026) ─────────────────────
+// Note: the booking calendar is hidden for now; this data is kept
+// so the schedule can be switched back on later.
 
 const tourSchedule = [
-  { tourTitle: "Tien Shan high pass trek",    country: "Central Asia", price: 1890, start: "2026-06-14", end: "2026-06-27", days: 14, spots: 8 },
-  { tourTitle: "Tien Shan high pass trek",    country: "Central Asia", price: 1890, start: "2026-07-19", end: "2026-08-01", days: 14, spots: 6 },
-  { tourTitle: "Tien Shan high pass trek",    country: "Central Asia", price: 1890, start: "2026-08-23", end: "2026-09-05", days: 14, spots: 8 },
-  { tourTitle: "Altyn-Emel desert trek",      country: "Kazakhstan",   price: 1240, start: "2026-04-26", end: "2026-05-04", days: 9,  spots: 10 },
-  { tourTitle: "Altyn-Emel desert trek",      country: "Kazakhstan",   price: 1240, start: "2026-09-13", end: "2026-09-21", days: 9,  spots: 10 },
-  { tourTitle: "Song-Kul alpine lake route",  country: "Kyrgyzstan",   price: 990,  start: "2026-06-28", end: "2026-07-04", days: 7,  spots: 12 },
-  { tourTitle: "Song-Kul alpine lake route",  country: "Kyrgyzstan",   price: 990,  start: "2026-07-26", end: "2026-08-01", days: 7,  spots: 10 },
-  { tourTitle: "Song-Kul alpine lake route",  country: "Kyrgyzstan",   price: 990,  start: "2026-08-09", end: "2026-08-15", days: 7,  spots: 12 },
-  { tourTitle: "Charyn canyon walking tour",  country: "Kazakhstan",   price: 740,  start: "2026-04-18", end: "2026-04-22", days: 5,  spots: 12 },
-  { tourTitle: "Charyn canyon walking tour",  country: "Kazakhstan",   price: 740,  start: "2026-05-16", end: "2026-05-20", days: 5,  spots: 8 },
-  { tourTitle: "Charyn canyon walking tour",  country: "Kazakhstan",   price: 740,  start: "2026-09-19", end: "2026-09-23", days: 5,  spots: 12 },
-  { tourTitle: "Fann mountains glacier trek", country: "Tajikistan",   price: 1590, start: "2026-07-05", end: "2026-07-15", days: 11, spots: 8 },
-  { tourTitle: "Fann mountains glacier trek", country: "Tajikistan",   price: 1590, start: "2026-08-02", end: "2026-08-12", days: 11, spots: 6 },
-  { tourTitle: "Fann mountains glacier trek", country: "Tajikistan",   price: 1590, start: "2026-08-30", end: "2026-09-09", days: 11, spots: 8 },
+  { tourTitle: "Almaty highlights",                   country: "Kazakhstan",   price: 2400, start: "2026-05-09", end: "2026-05-12", days: 4,  spots: 8 },
+  { tourTitle: "Almaty highlights",                   country: "Kazakhstan",   price: 2400, start: "2026-07-11", end: "2026-07-14", days: 4,  spots: 8 },
+  { tourTitle: "Almaty highlights",                   country: "Kazakhstan",   price: 2400, start: "2026-09-12", end: "2026-09-15", days: 4,  spots: 8 },
+  { tourTitle: "Almaty & Altyn-Emel desert",          country: "Kazakhstan",   price: 3000, start: "2026-05-16", end: "2026-05-21", days: 6,  spots: 8 },
+  { tourTitle: "Almaty & Altyn-Emel desert",          country: "Kazakhstan",   price: 3000, start: "2026-08-15", end: "2026-08-20", days: 6,  spots: 8 },
+  { tourTitle: "Almaty & Astana grand tour",          country: "Kazakhstan",   price: 4000, start: "2026-06-13", end: "2026-06-19", days: 7,  spots: 8 },
+  { tourTitle: "Almaty & Astana grand tour",          country: "Kazakhstan",   price: 4000, start: "2026-08-22", end: "2026-08-28", days: 7,  spots: 8 },
+  { tourTitle: "Kazakhstan in depth",                 country: "Kazakhstan",   price: null, start: "2026-06-06", end: "2026-06-19", days: 14, spots: 8 },
+  { tourTitle: "Kazakhstan in depth",                 country: "Kazakhstan",   price: null, start: "2026-09-05", end: "2026-09-18", days: 14, spots: 8 },
+  { tourTitle: "Kazakhstan, Kyrgyzstan & Uzbekistan", country: "Central Asia", price: null, start: "2026-07-04", end: "2026-07-13", days: 10, spots: 8 },
+  { tourTitle: "Kazakhstan, Kyrgyzstan & Uzbekistan", country: "Central Asia", price: null, start: "2026-09-19", end: "2026-09-28", days: 10, spots: 8 },
 ];
 
 // ── Calendar helpers ───────────────────────────────────────────
@@ -319,9 +306,9 @@ function WeekRow({ weekDays, weekEvents, selectedTour, onTourClick }) {
   );
 }
 
-// ── Calendar modal ─────────────────────────────────────────────
+// ── Booking calendar modal (hidden for now) ────────────────────
 
-function TrekCalendarModal({ onClose, initialTour }) {
+function TourCalendarModal({ onClose, initialTour }) {
   const initFilters = initialTour ? new Set([initialTour]) : new Set(TOUR_TITLES);
   const [filters,   setFilters]  = useState(initFilters);
   const [month,     setMonth]    = useState(() => nearestTourMonth(initFilters));
@@ -357,7 +344,7 @@ function TrekCalendarModal({ onClose, initialTour }) {
     <div className="cal-overlay" onClick={handleBackdrop} role="dialog" aria-modal="true">
       <div className="cal-modal">
         <div className="cal-header">
-          <span className="cal-title">Trek Schedule 2026</span>
+          <span className="cal-title">Tour Schedule 2026</span>
           <div className="cal-chips">
             {TOUR_TITLES.map(title => {
               const c = TOUR_COLORS[title]; const on = filters.has(title);
@@ -415,7 +402,7 @@ function TrekCalendarModal({ onClose, initialTour }) {
                   <h3 className="cal-tour-title">{selected.tourTitle}</h3>
                   <p className="cal-tour-dates">{fmtDate(selected.start)} — {fmtDate(selected.end)}</p>
                   <p className="cal-tour-meta">{selected.days} days · {selected.spots} spots left</p>
-                  <p className="cal-tour-price">${selected.price.toLocaleString('en-US')}<span> / person</span></p>
+                  <p className="cal-tour-price">{selected.price ? `$${selected.price.toLocaleString('en-US')}` : 'On request'}<span>{selected.price ? ' / person' : ' / tailored'}</span></p>
                 </div>
                 <form className="cal-form" onSubmit={e => { e.preventDefault(); setSubmitted(true); }}>
                   <label><span>Your name</span><input required type="text" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} /></label>
@@ -447,7 +434,7 @@ function TrekCalendarModal({ onClose, initialTour }) {
 
 // ── Tour detail modal ──────────────────────────────────────────
 
-function TourDetailModal({ tour, onClose, onPlanTrek }) {
+function TourDetailModal({ tour, onClose, onPlanTour }) {
   const itin  = TOUR_ITINERARIES[tour.title];
   const color = TOUR_COLORS[tour.title];
 
@@ -475,13 +462,13 @@ function TourDetailModal({ tour, onClose, onPlanTrek }) {
             <strong>{tour.days}</strong><span>Days</span>
           </div>
           <div className="tmodal-stat">
-            <strong>${tour.price.toLocaleString('en-US')}</strong><span>Per person</span>
+            <strong>{tour.price ? `$${tour.price.toLocaleString('en-US')}` : 'On request'}</strong><span>{tour.price ? 'Per person' : 'Pricing'}</span>
           </div>
           <div className="tmodal-stat">
-            <strong>{itin?.groupSize ?? '4–12'}</strong><span>Group size</span>
+            <strong>{itin?.groupSize ?? '6–8'}</strong><span>Group size</span>
           </div>
           <div className="tmodal-stat" style={{ borderLeftColor: color?.bg }}>
-            <strong>{itin?.difficulty ?? '—'}</strong><span>Difficulty</span>
+            <strong>{itin?.style ?? '—'}</strong><span>Style</span>
           </div>
         </div>
 
@@ -492,12 +479,11 @@ function TourDetailModal({ tour, onClose, onPlanTrek }) {
           <div className="tmodal-left">
             <p className="tmodal-lead">{tour.lead}</p>
             <p className="tmodal-desc">{tour.description}</p>
-            <img className="tmodal-side-img" src={tour.sideImage} alt={tour.sideImageAlt} />
             <button
               className="text-link tmodal-plan-btn" type="button"
-              onClick={() => { onClose(); onPlanTrek(tour.title); }}
+              onClick={() => { onClose(); onPlanTour(tour.title); }}
             >
-              Plan this trek <span aria-hidden="true">-&gt;</span>
+              Plan this tour <span aria-hidden="true">-&gt;</span>
             </button>
           </div>
 
@@ -526,18 +512,18 @@ function TourDetailModal({ tour, onClose, onPlanTrek }) {
 
 // ── Site components ────────────────────────────────────────────
 
-function Header({ onPlanTrek }) {
+function Header({ onPlanTour }) {
   return (
     <header className="site-header" aria-label="Main navigation">
-      <a className="brand" href="/">tengri</a>
+      <a className="brand" href="/">global nomad</a>
       <nav>
         <a href="#factors">Why us</a>
-        <a href="#tours">Routes</a>
-        <a href="#trip-styles">Trip styles</a>
+        <a href="#tours">Tours</a>
+        <a href="#trip-styles">Tour styles</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button className="reserve-link" type="button" onClick={onPlanTrek}>
-        Plan a trek <span aria-hidden="true">-&gt;</span>
+      <button className="reserve-link" type="button" onClick={onPlanTour}>
+        Plan a tour <span aria-hidden="true">-&gt;</span>
       </button>
       <button className="menu-button" type="button" aria-label="Open menu">
         <span /><span />
@@ -546,7 +532,7 @@ function Header({ onPlanTrek }) {
   );
 }
 
-function PopularTour({ tour, index, total, onPlanTrek, onViewDetail }) {
+function PopularTour({ tour, index, total, onPlanTour, onViewDetail }) {
   const tourNumber = index + 1;
   const titleId    = `popular-tour-${tourNumber}`;
   const isFirst    = index === 0;
@@ -556,7 +542,7 @@ function PopularTour({ tour, index, total, onPlanTrek, onViewDetail }) {
     <article className="tour-item" aria-labelledby={titleId}>
       <div className="tour-meta-row" aria-label="Tour meta">
         {isFirst ? (
-          <><span>{tour.country}</span><span>[ {total} trips ]</span></>
+          <><span>{tour.country}</span><span>[ {total} tours ]</span></>
         ) : (
           <><span aria-hidden="true" /><span aria-hidden="true" /></>
         )}
@@ -576,16 +562,16 @@ function PopularTour({ tour, index, total, onPlanTrek, onViewDetail }) {
 
           <div className="tour-price">
             {color && <span className="tour-color-tag" style={{ background: color.bg }} aria-hidden="true" />}
-            <strong>${tour.price.toLocaleString('en-US')}</strong>
-            <span>{tour.days} days · per person</span>
+            <strong>{tour.price ? `$${tour.price.toLocaleString('en-US')}` : 'On request'}</strong>
+            <span>{tour.days} days · {tour.price ? 'per person' : 'tailored itinerary'}</span>
           </div>
 
           <div className="tour-actions">
             <button className="text-link" type="button" onClick={() => onViewDetail(tour)}>
               Full itinerary <span aria-hidden="true">-&gt;</span>
             </button>
-            <button className="text-link" type="button" onClick={() => onPlanTrek(tour.title)}>
-              Plan this trek <span aria-hidden="true">-&gt;</span>
+            <button className="text-link" type="button" onClick={() => onPlanTour(tour.title)}>
+              Plan this tour <span aria-hidden="true">-&gt;</span>
             </button>
           </div>
         </div>
@@ -596,15 +582,15 @@ function PopularTour({ tour, index, total, onPlanTrek, onViewDetail }) {
   );
 }
 
-function KeyFactors({ onPlanTrek }) {
+function KeyFactors({ onPlanTour }) {
   return (
     <section className="screen factors-screen" aria-labelledby="factors-title" id="factors">
-      <Header onPlanTrek={onPlanTrek} />
+      <Header onPlanTour={onPlanTour} />
       <div className="factors-layout">
         <span className="page-index factors-index">[ 03 ]</span>
         <div className="factors-title-block">
           <h2 id="factors-title"><span>Four</span><span>Key factors</span></h2>
-          <p>Built around altitude, weather, local culture and small groups</p>
+          <p>Built around comfort, culture, wild nature and small private groups</p>
         </div>
         <div className="factors-list">
           {keyFactors.map((factor, i) => (
@@ -622,12 +608,12 @@ function TripStyles() {
   return (
     <section className="screen trip-styles-screen" aria-labelledby="trip-styles-title" id="trip-styles">
       <div className="trip-styles-heading">
-        <h2 id="trip-styles-title">Trip styles</h2>
+        <h2 id="trip-styles-title">Tour styles</h2>
         <span className="page-index">[ 04 ]</span>
       </div>
       <p className="trip-styles-copy">
-        <span>For people</span><span>who want</span><span>mountains,</span>
-        <span>silence,</span><span>we have</span><span>a route</span><span>that fits</span>
+        <span>For people</span><span>who want</span><span>cities,</span>
+        <span>nature,</span><span>we have</span><span>a tour</span><span>that fits</span>
       </p>
       <div className="trip-style-cards">
         {tripStyles.map(style => (
@@ -638,7 +624,7 @@ function TripStyles() {
         ))}
       </div>
       <a className="text-link trip-styles-link" href="#tours">
-        Explore trip styles <span aria-hidden="true">-&gt;</span>
+        Explore tour styles <span aria-hidden="true">-&gt;</span>
       </a>
     </section>
   );
@@ -648,39 +634,62 @@ function SafetyQuality() {
   return (
     <section className="screen safety-screen" aria-labelledby="safety-title" id="safety">
       <span className="page-index safety-index">[ 05 ]</span>
-      <h2 id="safety-title">For us the quality of the route is only second to safety.</h2>
+      <h2 id="safety-title">For us the comfort of the journey is only second to your safety.</h2>
       <a className="text-link safety-link" href="#contact">Talk to a planner <span aria-hidden="true">-&gt;</span></a>
-      <p className="safety-copy">We build Central Asia trekking routes with careful pacing, local guide knowledge and enough space for the mountains to feel real.</p>
-      <div className="experience-stats">
-        {experienceStats.map(stat => (
-          <div className="experience-stat" key={stat.label}>
-            <strong>{stat.value}</strong><span>{stat.label}</span>
-          </div>
-        ))}
-      </div>
-      <img className="safety-photo" src={photos.group} alt="A trekking group standing together in the mountains" />
+      <p className="safety-copy">We plan Central Asia tours with careful pacing, trusted local guides and comfortable hotels — so the region opens up without the stress.</p>
+      <img className="safety-photo" src={photos.group} alt="Travellers together on a Central Asia tour" />
     </section>
   );
 }
 
 function PlanningContact() {
-  const [sent, setSent] = useState(false);
+  const [sent, setSent]       = useState(false);
+  const [error, setError]     = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    setSent(true);
+    if (submitting) return;
+    setError('');
+    setSubmitting(true);
+
+    const fd = new FormData(e.target);
+    const payload = {
+      name:   fd.get('name'),
+      dates:  fd.get('date'),
+      email:  fd.get('email'),
+      phone:  fd.get('phone'),
+      source: 'planning-form',
+    };
+
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'Something went wrong. Please try again.');
+      }
+      setSent(true);
+    } catch (err) {
+      setError(err.message || 'Could not send your request. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
     <>
       <section className="screen planning-screen" aria-labelledby="planning-title" id="contact">
         <div className="planning-head">
-          <h2 id="planning-title">Are you planning a Central Asia trek?</h2>
+          <h2 id="planning-title">Are you planning a Central Asia tour?</h2>
           <span className="page-index">[ 06 ]</span>
         </div>
         <div className="planning-intro">
-          <img src={photos.lakeTraveler} alt="A traveler sitting beside a mountain lake" />
-          <p>Share your dates and we will prepare a route through mountains, canyons and Silk Road places</p>
+          <img src={photos.kolsai} alt="A traveller beside a mountain lake in Kazakhstan" />
+          <p>Share your dates and we'll plan a unique tour just for you — a private route through Almaty, the mountains, the desert parks and the Silk Road cities, built around what you want to see</p>
         </div>
 
         {sent ? (
@@ -695,30 +704,21 @@ function PlanningContact() {
             <label><span>My travel dates are</span><input name="date" type="text" aria-label="Approximate date" /></label>
             <label><span>My email address is</span><input name="email" type="email" aria-label="Email address" /></label>
             <label><span>My contact number is</span><input name="phone" type="tel" aria-label="Contact number" /></label>
-            <button className="text-link" type="submit">Send route request <span aria-hidden="true">-&gt;</span></button>
+            <button className="text-link" type="submit" disabled={submitting}>
+              {submitting ? 'Sending…' : 'Send tour request'} <span aria-hidden="true">-&gt;</span>
+            </button>
+            {error && <p className="planning-error" role="alert">{error}</p>}
           </form>
         )}
       </section>
 
       <footer className="site-footer" aria-label="Footer">
         <div className="footer-top">
-          <a className="brand" href="/">tengri</a>
+          <a className="brand" href="/">global nomad</a>
           <a href="#top">Menu</a>
         </div>
-        <address>12 Chuy Avenue,<br />Bishkek 720000,<br />Kyrgyzstan</address>
-        <div className="footer-contact">
-          <h2>Get in touch</h2>
-          <a href="mailto:hello@tengritreks.com">hello@tengritreks.com</a>
-          <a href="tel:+996555240699">+996 555 240 699</a>
-        </div>
-        <div className="footer-social">
-          <strong>Follow us<br />on social <span aria-hidden="true">-&gt;</span></strong>
-          <a href="#email">Email</a><a href="#instagram">Instagram</a>
-          <a href="#linkedin">LinkedIn</a><a href="#youtube">YouTube</a>
-          <a href="#tripadvisor">Tripadvisor</a>
-        </div>
         <div className="footer-bottom">
-          <span>© 2026 Tengri Treks. Central Asia routes and field notes</span>
+          <span>© 2026 Global Nomad. Private tours across Central Asia</span>
           <a href="#cookies">Cookies policy</a>
           <a href="#privacy">Privacy policy</a>
         </div>
@@ -734,49 +734,53 @@ export default function App() {
   const [calTour,    setCalTour]    = useState(null);
   const [detailTour, setDetailTour] = useState(null);
 
-  function openCal(tourTitle) {
-    // guard: onClick passes a MouseEvent — treat anything non-string as "all tours"
+  // The booking calendar is hidden for now — "Plan a tour" buttons
+  // scroll to the contact form instead of opening the calendar modal.
+  function openPlan(tourTitle) {
     setCalTour(typeof tourTitle === 'string' ? tourTitle : null);
-    setCalOpen(true);
+    const el = typeof document !== 'undefined' && document.getElementById('contact');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
   }
-  function closeCal()          { setCalOpen(false); setCalTour(null); }
-  function openDetail(tour)    { setDetailTour(tour); }
-  function closeDetail()       { setDetailTour(null); }
+  function closeCal()       { setCalOpen(false); setCalTour(null); }
+  function openDetail(tour) { setDetailTour(tour); }
+  function closeDetail()    { setDetailTour(null); }
 
   return (
     <main className="stage">
-      {calOpen    && <TrekCalendarModal onClose={closeCal} initialTour={calTour} />}
-      {detailTour && <TourDetailModal tour={detailTour} onClose={closeDetail} onPlanTrek={openCal} />}
+      {/* Calendar kept but hidden (calOpen stays false). Re-enable by
+          setting calOpen in openPlan to show TourCalendarModal again. */}
+      {calOpen    && <TourCalendarModal onClose={closeCal} initialTour={calTour} />}
+      {detailTour && <TourDetailModal tour={detailTour} onClose={closeDetail} onPlanTour={openPlan} />}
 
       <div className="site-canvas">
         <section className="screen hero-screen" aria-labelledby="hero-title">
-          <Header onPlanTrek={openCal} />
+          <Header onPlanTour={openPlan} />
           <div className="hero-composition">
-            <img className="hero-photo hero-photo-hikers" src={photos.hikers} alt="Hikers walking through a mountain pass" />
+            <img className="hero-photo hero-photo-hikers" src={photos.charyn} alt="Red rock formations of Charyn canyon in Kazakhstan" />
             <h1 id="hero-title" className="hero-title">
-              <span>Hiking/</span><span>Trekking</span><span>Tours</span>
+              <span>Central</span><span>Asia</span><span>Tours</span>
             </h1>
             <span className="page-index hero-index">[ 01 ]</span>
-            <p className="challenge-copy">Cross Central Asia on your next mountain route</p>
-            <img className="hero-photo hero-photo-trail" src={photos.trail} alt="A winding mountain trail through dry grass" />
-            <img className="hero-photo hero-photo-tent"  src={photos.tent}  alt="Travelers sitting inside a tent" />
+            <p className="challenge-copy">Discover Central Asia on a private guided tour</p>
+            <img className="hero-photo hero-photo-trail" src={photos.kolsai} alt="Kolsai mountain lake surrounded by forest" />
+            <img className="hero-photo hero-photo-tent"  src={photos.registan}  alt="Registan square in Samarkand, Uzbekistan" />
             <div className="hero-stat">
-              <strong>316</strong><span>Route days across the region</span>
+              <strong>50+</strong><span>Destinations across the region</span>
             </div>
-            <button className="text-link hero-cta" type="button" onClick={openCal}>
-              Plan a trek <span aria-hidden="true">-&gt;</span>
+            <button className="text-link hero-cta" type="button" onClick={openPlan}>
+              Plan a tour <span aria-hidden="true">-&gt;</span>
             </button>
-            <img className="hero-photo hero-photo-gear" src={photos.gear} alt="Hiking gear resting on rocks near a stream" />
+            <img className="hero-photo hero-photo-gear" src={photos.zenkov} alt="Zenkov Cathedral in Almaty" />
             <p className="intro-copy">
-              Guided trekking across Kyrgyzstan, Kazakhstan and Tajikistan:
-              high passes, canyons, alpine lakes and remote villages.
+              Private guided tours across Kazakhstan, Kyrgyzstan and Uzbekistan:
+              Almaty and Astana, Charyn canyon, mountain lakes, singing dunes and Silk Road cities.
             </p>
           </div>
         </section>
 
         <section className="screen tours-screen" id="tours" aria-labelledby="tours-title">
           <div className="section-title-row">
-            <h2 id="tours-title">Popular Central Asia routes</h2>
+            <h2 id="tours-title">Popular Central Asia tours</h2>
             <span className="page-index">[ 02 ]</span>
           </div>
           <div className="tour-stack" aria-label="Popular tours list">
@@ -784,14 +788,14 @@ export default function App() {
               <PopularTour
                 key={tour.title}
                 tour={tour} index={index} total={popularTours.length}
-                onPlanTrek={openCal}
+                onPlanTour={openPlan}
                 onViewDetail={openDetail}
               />
             ))}
           </div>
         </section>
 
-        <KeyFactors onPlanTrek={openCal} />
+        <KeyFactors onPlanTour={openPlan} />
         <TripStyles />
         <SafetyQuality />
         <PlanningContact />
