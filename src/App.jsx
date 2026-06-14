@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { trackEvent } from './analytics.js';
 
 const photos = {
   // ── Real Central Asia photos (Wikimedia Commons) ──────────────
@@ -673,6 +674,7 @@ function PlanningContact() {
         throw new Error(data.error || 'Something went wrong. Please try again.');
       }
       setSent(true);
+      trackEvent('generate_lead', { source: 'planning-form' });
     } catch (err) {
       setError(err.message || 'Could not send your request. Please try again.');
     } finally {
