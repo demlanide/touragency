@@ -717,6 +717,7 @@ function PlanningContact() {
       <footer className="site-footer" aria-label="Footer">
         <div className="footer-top">
           <a className="brand" href="/">global nomad</a>
+          <a href="/guides/">Travel guides</a>
           <a href="#top">Menu</a>
         </div>
         <div className="footer-bottom">

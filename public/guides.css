@@ -1,0 +1,103 @@
+/* Styling for the static SEO guide pages (scripts/build-guides.mjs). */
+:root {
+  --bg: #151515;
+  --panel: #e9e5e1;
+  --ink: #141414;
+  --muted: #5b5650;
+  --accent: #b4532a;
+  --line: #cfc8bf;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+a { color: inherit; }
+img { display: block; max-width: 100%; }
+
+.g-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: 1096px;
+  margin: 0 auto;
+  padding: 1.1rem 1.5rem;
+  color: #f4f1ec;
+}
+.g-header .brand { font-weight: 700; letter-spacing: .02em; text-transform: lowercase; }
+.g-header nav a { margin-left: 1.25rem; font-size: .9rem; opacity: .85; }
+.g-header nav a:hover { opacity: 1; text-decoration: underline; }
+
+.g-main {
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  background: var(--panel);
+  padding: clamp(1.5rem, 4vw, 3.25rem);
+  border-radius: 6px;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .72rem;
+  color: var(--accent);
+  margin: 0 0 .5rem;
+}
+.g-main h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.9rem);
+  line-height: 1.1;
+  margin: 0 0 1.25rem;
+  letter-spacing: -.01em;
+}
+.g-main .lead { font-size: 1.1rem; color: var(--muted); }
+.g-main h2 {
+  font-size: 1.3rem;
+  margin: 2rem 0 .5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+article p { margin: 0 0 1rem; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+.cta {
+  margin: 2.5rem 0 1rem;
+  padding: 1.5rem;
+  background: #141414;
+  color: #f4f1ec;
+  border-radius: 6px;
+}
+.cta p { margin: 0 0 1rem; }
+.cta-btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: .7rem 1.2rem;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.cta-btn:hover { filter: brightness(1.08); }
+
+.related { margin-top: 2.5rem; }
+.related h2 { font-size: 1.05rem; }
+.related ul { padding-left: 1.1rem; margin: .5rem 0 0; }
+.related li { margin: .35rem 0; }
+.related a { color: var(--accent); }
+
+section ul { padding-left: 1.1rem; }
+section li { margin: .5rem 0; }
+
+.g-footer {
+  max-width: 1096px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  color: #9a948c;
+  font-size: .85rem;
+  text-align: center;
+}
+.g-footer a { color: #cfc8bf; text-decoration: underline; }
