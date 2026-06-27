@@ -295,10 +295,33 @@ export const guides = [
       'Here’s how a <strong>Kyrgyzstan horse riding tour</strong> works.</p>'
     ),
     sections: [
-      { h2: 'The nomad horse culture', html: '<p>Why the horse is central to Kyrgyz life — and what that means for travellers.</p>' },
-      { h2: 'Song-Kol & top routes', html: '<p>The classic high-pasture rides and how long they take.</p>' },
-      { h2: 'Do you need riding experience?', html: '<p>What beginners can manage and how trips are paced.</p>' },
-      { h2: 'Yurt stays & combining with trekking', html: '<p>Pair riding with hiking — see <a href="/kyrgyzstan/trekking/">Kyrgyzstan trekking</a>.</p>' },
+      { h2: 'Why ride in Kyrgyzstan', html: p(
+        '<p>Few places on Earth are as made for the saddle as Kyrgyzstan. More than ninety per cent of the country is mountainous, the summer pastures stretch unfenced for miles, and the horse has been the centre of life here for thousands of years. To travel on horseback is not a tourist gimmick — it is simply how people still move between the high camps. That is what makes <strong>horse trekking in Kyrgyzstan</strong> so special: you are not performing nomadic life, you are briefly living it.</p>',
+        '<p>A ride takes you places no vehicle can reach: hidden lakes, flower-filled jailoos (summer pastures), and passes where the only sounds are wind and hooves. You move at the pace of the land, share the trail with herders driving their flocks, and end the day at a felt yurt with a bowl of tea waiting. For many travellers it becomes the most memorable part of an entire Central Asia trip.</p>'
+      ) },
+      { h2: 'The nomad horse culture', html: p(
+        '<p>To understand Kyrgyzstan is to understand its relationship with the horse. Children here often learn to ride before they can properly walk, and the animal runs through the country’s language, food and games. You will likely be offered <em>kymyz</em>, fermented mare’s milk — a slightly sour, fizzy drink that is a point of national pride and a staple of the summer pastures.</p>',
+        '<p>You may also catch the traditional horseback games that turn riding into sport: <em>kok-boru</em>, a fierce contest played with a goat carcass, and <em>kyz kuumai</em>, the “chase the girl” race. Travelling on horseback, even gently, plugs you straight into this living culture rather than observing it from a bus window. Your guide and the herders you meet along the way are the real introduction.</p>'
+      ) },
+      { h2: 'Song-Köl and the best routes', html: p(
+        '<p><strong>Song-Köl</strong> is the classic, and rightly so. This vast alpine lake sits at just over 3,000 metres on a high plateau ringed by pasture, and in summer it fills with yurt camps and grazing herds. The ride up — typically two to three days from the valleys below — climbs through gorges and over a pass before the lake opens out in front of you. Nights are spent in herders’ yurts on the shore, under some of the clearest skies you will ever see.</p>',
+        '<p>Other rewarding rides include the pastures around <strong>Jyrgalan</strong> in the east, the valleys near <strong>Kochkor</strong> (the usual gateway to Song-Köl), and routes linking to the turquoise lakes of the Tian Shan. Trips range from a half-day taster to week-long expeditions that cross several passes. We match the route to your time, fitness and appetite for remoteness.</p>'
+      ) },
+      { h2: 'Do you need riding experience?', html: p(
+        '<p>No — and this surprises people. The hardy local horses are sure-footed and used to the terrain, and trips are paced for the group. Complete beginners can manage a gentle multi-day ride, especially with a guide who keeps the pace calm and gives a proper briefing on the first morning. If you have ridden before, you will simply enjoy more freedom to trot and canter across the open pasture.</p>',
+        '<p>That said, honesty about your level helps us plan well. Long days in the saddle are tiring on muscles you did not know you had, and high passes demand a little nerve. We will be straight with you about which routes suit first-timers and which reward confident riders, and we can always arrange a support vehicle or a shorter day where it makes sense.</p>'
+      ) },
+      { h2: 'Yurt stays and what to expect', html: p(
+        '<p>The reward at the end of each riding day is the yurt. These felt-and-wood tents are warm, surprisingly comfortable, and steeped in tradition — sleeping in one beside Song-Köl, with horses grazing outside and the Milky Way overhead, is the trip’s signature memory. Expect simple, hearty food, shared meals with the herder families, and basic facilities: this is the high pasture, not a hotel, and that is exactly the point.</p>',
+        '<p>Bring layers for sharp temperature swings, sun protection for the altitude, and a sense of adventure. Nights get cold even in July, and mountain weather changes fast. A good guide carries the gear and local knowledge that keep it all comfortable rather than rough.</p>'
+      ) },
+      { h2: 'When to go', html: p(
+        '<p>The horse-trekking season is short and tied to the pastures. The yurt camps at Song-Köl and other high jailoos are generally up from <strong>mid-June to early September</strong>, with July and August the most reliable months for warm days and open passes. Outside that window the herders descend to the valleys, the camps pack away, and snow can close the high routes entirely. For the wider seasonal picture across the region, see our guide to the <a href="/kazakhstan/best-time-to-visit/">best time to visit</a>.</p>'
+      ) },
+      { h2: 'Combine riding with trekking and the Silk Road', html: p(
+        '<p>Horse trekking pairs naturally with hiking — many travellers spend a few days in the saddle and a few on foot. If you would rather walk the high routes, see our guide to <a href="/kyrgyzstan/trekking/">Kyrgyzstan trekking</a>. And because Kyrgyzstan borders both Kazakhstan and the Silk Road cities of Uzbekistan, a ride slots beautifully into a longer journey: open with the mountains and lakes around Almaty, ride at Song-Köl, then finish among the monuments of Samarkand and Bukhara. The <a href="/central-asia/itinerary/">Central Asia itinerary</a> shows how it all fits together.</p>',
+        '<p>We build every ride into a private, guided trip — handling the horses, the herder hosts, the permits and the logistics so you can simply enjoy the saddle. Tell us your dates and riding experience, and we will shape a <a href="/kazakhstan-tours/">Central Asia tour</a> with horse trekking at its heart.</p>'
+      ) },
     ],
     related: ['/kyrgyzstan/trekking/', '/central-asia/itinerary/', '/kazakhstan-tours/'],
   },
