@@ -22,7 +22,7 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/demlanide/touragencyatest
+            ghcr.io/demlanide/touragency:latest
             ghcr.io/demlanide/touragency:${{ github.sha }}
           build-args: |
             VITE_GA_ID=
